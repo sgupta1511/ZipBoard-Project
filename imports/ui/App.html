@@ -1,0 +1,48 @@
+<head>
+    <title> Welcome to ZipBoard Feed</title>
+</head>
+<body>
+{{> mainContainer }}
+</body>
+<template name="mainContainer">
+    <div class="app">
+        <header>
+            <div class="app-bar">
+                <div class="app-header">
+                    <h1 style="text-align: center;" > ZipBoard Feed </h1>
+                </div>
+            </div>
+        </header>
+        <div class="main">
+            {{#if currentUser}}
+
+            {{> form }}
+            <ul class="feeds">
+                {{#each feeds}}
+                    <p>UserId: {{getUser createdBy}}</p>
+                    <p>{{createdAt}}</p>
+                    {{> feed}}
+                {{/each}}
+            </ul>
+            {{/if}}
+
+        </div>
+    </div>
+</template>
+
+<template name="feed">
+{{#if currentUser}}
+
+        <li>{{text}}</li>
+    {{/if}}
+</template>
+<template name="form">
+    {{#if currentUser}}
+
+        <form class="feed-form">
+
+        <input type="text" name="text" placeholder="Type to add a comment"/>
+        <button type="submit">Add Comment</button>
+    </form>
+    {{/if}}
+</template>
